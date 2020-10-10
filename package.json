@@ -10,6 +10,11 @@
   },
   "author": "vhen",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vhens/vhen-webpack-template.git"
+  },
+  "homepage": "https://github.com/Vhens/vhen-webpack-template#readme",
   "dependencies": {
     "vue": "^2.6.12"
   },
