@@ -2,23 +2,52 @@
  * @Author: Vhen
  * @Date: 2020-10-09 15:05:04
  * @LastEditors: Vhen
- * @LastEditTime: 2020-10-09 17:35:01
+ * @LastEditTime: 2020-10-10 16:32:56
  * @Description:
  */
 const BasePluginConfig = require('./base.plugin.config')
 const EntryConfig = require('./entry.config')
 const ModuleConfig = require('./module.config')
 const ServerConfig = require('./server.config')
-const OutputConfig= require('./output.config')
-const ResolveConfig= require('./resolve.config')
+const OutputConfig = require('./output.config')
+const ResolveConfig = require('./resolve.config')
+const EnvConfig = require('./env.config')
 
+const CUR_ENV = EnvConfig[process.env.NODE_ENV] // 全局环境变量
+
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: CUR_ENV.env === 'production' ? 'development' : 'production',
   entry: EntryConfig,
   output: OutputConfig,
   module: ModuleConfig,
   resolve: ResolveConfig,
   devServer: ServerConfig,
   plugins: BasePluginConfig,
+  //  代码优化
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            pure_funcs: ['console.log'],
+          },
+        },
+      }),
+    ],
+  },
+
+  //警告 webpack 的性能提示
+  performance: {
+    hints: 'warning',
+    //入口起点的最大体积
+    maxEntrypointSize: 50000000,
+    //生成文件的最大体积
+    maxAssetSize: 30000000,
+    //只给出 js 文件的性能提示
+    assetFilter: function(assetFilename) {
+      return assetFilename.endsWith('.js')
+    },
+  },
 }

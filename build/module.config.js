@@ -2,7 +2,7 @@
  * @Author: Vhen
  * @Date: 2020-10-09 15:04:16
  * @LastEditors: Vhen
- * @LastEditTime: 2020-10-10 10:16:04
+ * @LastEditTime: 2020-10-10 13:23:28
  * @Description: 处理项目中的不同类型的模块。
  */
 const path = require('path')
@@ -11,7 +11,7 @@ module.exports = {
   rules: [
     {
       test: /\.vue$/,
-      loader: 'vue-loader'
+      loader: 'vue-loader',
     },
     {
       test: /\.js$/,
@@ -21,7 +21,7 @@ module.exports = {
     {
       test: /\.(sa|sc|le|c)ss$/,
       use: [
-        'style-loader',
+        'vue-style-loader',
         {
           loader: MiniCssExtractPlugin.loader,
           options: {
@@ -33,7 +33,9 @@ module.exports = {
         {
           loader: 'postcss-loader',
           options: {
-            config: { path: path.resolve(__dirname, '../postcss.config.js') },
+            postcssOptions: {
+              config:  path.resolve(__dirname, '../postcss.config.js'),
+            },
           },
         },
       ],
