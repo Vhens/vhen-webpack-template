@@ -2,7 +2,7 @@
  * @Author: Vhen
  * @Date: 2020-10-09 14:54:55
  * @LastEditors: Vhen
- * @LastEditTime: 2020-10-10 16:22:01
+ * @LastEditTime: 2020-10-12 10:35:00
  * @Description: 基础插件
  */
 
@@ -23,9 +23,10 @@ module.exports = [
   }),
   // 构建html
   new HtmlWebpackPlugin({
-    favicon: 'favicon.ico',
+    favicon: path.resolve(__dirname, '../public/favicon.ico'),
     filename: 'index.html',
-    template: 'index.html',
+    template: path.resolve(__dirname, '../public/index.html'),
+    title: 'Vue',
     inject: true,
     minify: {
       removeComments: true,
@@ -42,17 +43,38 @@ module.exports = [
   new webpack.HotModuleReplacementPlugin(), //热模块替换开启
   //vue-loader插件开启
   new VueLoaderPlugin(),
-  // new   HtmlWebpackTagsPlugin({
-  //   links: [
-  //     // 'style-1.css',
-  //   ],
-  //   scripts: [
-  //     { path: 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js' },
-  //   ]
-  // })
   new MiniCssExtractPlugin({
     // 类似 webpackOptions.output里面的配置 可以忽略
     filename: 'css/[name].css',
     chunkFilename: 'css/[id].css',
   }),
+  new HtmlWebpackTagsPlugin({
+    links: [
+      'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
+    ],
+    scripts: [
+      {
+        path: 'https://cdn.jsdelivr.net/npm/vue',
+        external: {
+          packageName: 'vue',
+          variableName: 'Vue'
+        },
+      },
+      {
+        path: 'https://unpkg.com/vue-router/dist/vue-router.js',
+        external: {
+          packageName: 'vue-router',
+          variableName: 'VueRouter'
+        },
+      },
+      {
+        path: 'https://unpkg.com/element-ui/lib/index.js',
+        external: {
+          packageName: 'element-ui',
+          variableName: 'ELEMENT'
+        },
+      },
+    ],
+  }),
 ]
+

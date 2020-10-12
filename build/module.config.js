@@ -2,7 +2,7 @@
  * @Author: Vhen
  * @Date: 2020-10-09 15:04:16
  * @LastEditors: Vhen
- * @LastEditTime: 2020-10-10 13:23:28
+ * @LastEditTime: 2020-10-10 17:23:45
  * @Description: 处理项目中的不同类型的模块。
  */
 const path = require('path')
@@ -16,7 +16,7 @@ module.exports = {
     {
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader',
+      loader: 'babel-loader?cacheDirectory', // 缓存loader执行结果
     },
     {
       test: /\.(sa|sc|le|c)ss$/,
