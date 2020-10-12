@@ -2,7 +2,7 @@
  * @Author: Vhen
  * @Date: 2020-10-09 14:54:55
  * @LastEditors: Vhen
- * @LastEditTime: 2020-10-12 11:13:34
+ * @LastEditTime: 2020-10-12 11:56:07
  * @Description: 基础插件
  */
 
@@ -49,33 +49,30 @@ module.exports = [
     chunkFilename: 'css/[id].css',
   }),
   new HtmlWebpackTagsPlugin({
-    links: [
-      'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
-    ],
+    links: ['https://unpkg.com/element-ui/lib/theme-chalk/index.css'],
     scripts: [
       {
         path: 'https://cdn.jsdelivr.net/npm/vue',
         external: {
           packageName: 'vue',
-          variableName: 'Vue'
+          variableName: 'Vue',
         },
       },
       {
         path: 'https://unpkg.com/vue-router/dist/vue-router.js',
         external: {
           packageName: 'vue-router',
-          variableName: 'VueRouter'
+          variableName: 'VueRouter',
         },
       },
       {
         path: 'https://unpkg.com/element-ui/lib/index.js',
         external: {
           packageName: 'element-ui',
-          variableName: 'ELEMENT'
+          variableName: 'ELEMENT',
         },
       },
     ],
-    publicPath:false
+    publicPath: false,
   }),
 ]
-

@@ -2,12 +2,13 @@
  * @Author: Vhen
  * @Date: 2020-10-10 13:58:28
  * @LastEditors: Vhen
- * @LastEditTime: 2020-10-12 10:19:43
+ * @LastEditTime: 2020-10-12 11:56:24
  * @Description: 
 -->
 <template>
   <div class="home">
     home   <el-button type="success">成功按钮</el-button>
+
   </div>
 </template>
 
@@ -22,7 +23,6 @@ export default {
   components: {},
   methods: {},
   mounted(){
-    
   },
   watch: {}
 }

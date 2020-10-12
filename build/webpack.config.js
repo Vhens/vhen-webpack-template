@@ -2,7 +2,7 @@
  * @Author: Vhen
  * @Date: 2020-10-09 15:05:04
  * @LastEditors: Vhen
- * @LastEditTime: 2020-10-12 09:42:04
+ * @LastEditTime: 2020-10-12 12:18:55
  * @Description:
  */
 const BasePluginConfig = require('./base.plugin.config')
@@ -12,12 +12,11 @@ const ServerConfig = require('./server.config')
 const OutputConfig = require('./output.config')
 const ResolveConfig = require('./resolve.config')
 const EnvConfig = require('./env.config')
-const ExtemalsConfig=require('./externals.config')
-const DevToolConfig=require('./devtool.config')
+const ExtemalsConfig = require('./externals.config')
+const DevToolConfig = require('./devtool.config')
+const OptimizationConfig=require('./optimization.config')
 
 const CUR_ENV = EnvConfig[process.env.NODE_ENV] // 全局环境变量
-
-const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
   mode: CUR_ENV.env === 'production' ? 'development' : 'production',
@@ -29,19 +28,7 @@ module.exports = {
   devtool: DevToolConfig,
   plugins: BasePluginConfig,
   externals: ExtemalsConfig,
-  //  代码优化
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          compress: {
-            pure_funcs: ['console.log'],
-          },
-        },
-      }),
-    ],
-  },
-
+  optimization: OptimizationConfig,
   //警告 webpack 的性能提示
   performance: {
     hints: 'warning',
