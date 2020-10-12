@@ -2,7 +2,7 @@
  * @Author: Vhen
  * @Date: 2020-10-09 14:54:55
  * @LastEditors: Vhen
- * @LastEditTime: 2020-10-12 10:35:00
+ * @LastEditTime: 2020-10-12 11:13:34
  * @Description: 基础插件
  */
 
@@ -75,6 +75,7 @@ module.exports = [
         },
       },
     ],
+    publicPath:false
   }),
 ]
 
